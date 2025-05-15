@@ -34,28 +34,42 @@ class LoginController
             'titulo' => ' | Crear cuenta'
         ]);
     }
-    public static function olvide()
+    public static function olvide(Router $router)
     {
-        echo "Desde olvide";
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             # code...
         }
+
+        //Render a la vista
+        $router->render('auth/olvide', [
+            'titulo' => ' | Olvide mi Contraseña'
+        ]);
     }
-    public static function reestablecer()
+    public static function reestablecer(Router $router)
     {
-        echo "Desde reestablecer";
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             # code...
         }
+
+        //Render a la vista
+        $router->render('auth/restablecer', [
+            'titulo' => ' | Recuperar Contraseña'
+        ]);
     }
-    public static function mensaje()
+    public static function mensaje(Router $router)
     {
-        echo "Desde mensaje";
+        //Render a la vista
+        $router->render('auth/mensaje', [
+            'titulo' => ' | Cuenta Creada Correctamente'
+        ]);
     }
-    public static function confirmar()
+    public static function confirmar(Router $router)
     {
-        echo "Desde confirmar";
+        //Render a la vista
+        $router->render('auth/confirmar', [
+            'titulo' => ' | Confirme cuenta'
+        ]);
     }
 }

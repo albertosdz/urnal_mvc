@@ -1,6 +1,5 @@
 <div class="contenedor login">
-    <h1 class="logo">Urnal</h1>
-    <p class="tagline">Crea Tareas, Administra Proyectos</p>
+    <?php include_once __DIR__ .'/../templates/nombre-sitio.php'; ?>
 
     <div class="contenedor-sm">
         <p class="descripcion-pagina">Iniciar Sesión</p>
