@@ -1,0 +1,13 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.login {
+
+    .logo {
+        text-align: center
+    }
+    
+    input[type="submit"] {
+        @include m.boton(v.$cyan, v.$blanco);
+    }
+}
