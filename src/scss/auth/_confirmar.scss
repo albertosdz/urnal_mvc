@@ -1,7 +1,7 @@
 @use "base/variables" as v;
 @use "base/mixins" as m;
 
-.login {
+.confirmar {
 
     margin-top: 5rem;
 
@@ -9,7 +9,5 @@
         text-align: center
     }
     
-    input[type="submit"] {
-        @include m.boton(v.$cyan, v.$blanco);
-    }
+   
 }
