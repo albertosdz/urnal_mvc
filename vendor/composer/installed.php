@@ -1,19 +1,19 @@
 <?php return array(
     'root' => array(
-        'name' => 'juandelatorre/up-task_mvc',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'name' => 'albertosantos/urnal',
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
+        'reference' => '7e565b8a0910dcb736f448932b41c552681d6950',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
-        'juandelatorre/up-task_mvc' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+        'albertosantos/urnal' => array(
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => '7e565b8a0910dcb736f448932b41c552681d6950',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
