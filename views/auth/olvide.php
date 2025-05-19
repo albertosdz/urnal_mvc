@@ -1,8 +1,11 @@
 <div class="contenedor olvide">
-    <?php include_once __DIR__ .'/../templates/nombre-sitio.php'; ?>
+    <?php include_once __DIR__ . '/../templates/nombre-sitio.php'; ?>
 
     <div class="contenedor-sm">
         <p class="descripcion-pagina">Recuperar contraseña de Urnal</p>
+
+        <?php include_once __DIR__ . '/../templates/alertas.php'; ?>
+
 
         <form action="/olvide" method="post" class="formulario">
             <div class="campo">
@@ -13,7 +16,7 @@
                     placeholder="Tu Email"
                     name="email" />
             </div>
-            
+
             <input type="submit" class="boton" value="Enviar Correo">
         </form>
 
