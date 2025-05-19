@@ -27,7 +27,8 @@ class Usuario extends ActiveRecord
     }
 
     // Validación para cuentas nuevas
-    public function validarNuevaCuenta() {
+    public function validarNuevaCuenta()
+    {
         if (!$this->nombre) {
             self::$alertas['error'][] = 'El Nombre del Usuario es Obligatorio';
         }
@@ -47,13 +48,42 @@ class Usuario extends ActiveRecord
         return self::$alertas;
     }
 
+    // Valida un email
+    public function validarEmail()
+    {
+        if (!$this->email) {
+            self::$alertas['error'][] = 'El Email es Obligatorio';
+        }
+
+        if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+            self::$alertas['error'][] = 'Email no válido';
+        }
+
+        return self::$alertas;
+    }
+
+    // Valida la contraseña
+    public function validarPassword()
+    {
+        if (!$this->password) {
+            self::$alertas['error'][] = 'La Contraseña del Usuario es Obligatoria';
+        }
+        if (strlen($this->password) < 6) {
+            self::$alertas['error'][] = 'La Contraseña debe contener al menos 6 caracteres';
+        }
+
+        return self::$alertas;
+    }
+
     // Haseha la contraseña
-    public function hashPassword() {
+    public function hashPassword()
+    {
         $this->password = password_hash($this->password, PASSWORD_BCRYPT);
     }
 
     // Generar un Token
-    public function crearToken() {
+    public function crearToken()
+    {
         $this->token = uniqid();
     }
 }

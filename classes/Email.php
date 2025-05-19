@@ -49,4 +49,37 @@ class Email
         // Enviar el email
         $mail->send();
     }
+
+    public function enviarInstrucciones()
+    {
+        // Looking to send emails in production? Check out our Email API/SMTP product!
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->Host = 'sandbox.smtp.mailtrap.io';
+        $mail->SMTPAuth = true;
+        $mail->Port = 2525;
+        $mail->Username = 'a95a51028d67d6';
+        $mail->Password = 'a6cc2c809bc027';
+
+        $mail->setFrom('cuentas@urnal.com');
+        $mail->addAddress('cuentas@urnal.com', 'urnal.com');
+        $mail->Subject = 'Recuperación de contraseña';
+
+        $mail->isHTML(TRUE);
+        $mail->CharSet = 'UTF-8';
+
+        $contenido = '<html>';
+
+        $contenido .= "<p><strong>Hola " . $this->nombre . "</strong> Es normal, a todo el mundo le cuestra acordarse de la contraseña</p>";
+        $contenido .= "<p>Recupera tu contraseña de Urnal en el siguiente enlace</p>";
+        $contenido .= "<p>Presiona aquí: <a href='http://localhost:3000/reestablecer?token=" .
+            $this->token . "'>Recuperar Contraseña</p>";
+        $contenido .= "<p>Si este correo no te suena de nada, mejor pasa de largo :)</p>";
+        $contenido .= '</html>';
+
+        $mail->Body = $contenido;
+
+        // Enviar el email
+        $mail->send();
+    }
 }

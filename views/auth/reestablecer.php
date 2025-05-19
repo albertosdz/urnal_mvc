@@ -1,10 +1,13 @@
-<div class="contenedor restablecer">
+<div class="contenedor reestablecer">
     <?php include_once __DIR__ . '/../templates/nombre-sitio.php'; ?>
 
     <div class="contenedor-sm">
         <p class="descripcion-pagina">Nueva Contraseña</p>
 
-        <form action="/restablecer" method="post" class="formulario">
+        <?php include_once __DIR__ . '/../templates/alertas.php'; ?>
+
+        <?php if($mostrarInput)  {?>
+        <form method="post" class="formulario">
 
             <div class="campo">
                 <label for="password">Contraseña</label>
@@ -17,6 +20,8 @@
 
             <input type="submit" class="boton" value="Guardar Contraseña">
         </form>
+
+        <?php } ?>
 
         <div class="acciones">
             <a href="/crear">Crear una cuenta</a>
