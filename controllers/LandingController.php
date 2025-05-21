@@ -4,7 +4,7 @@ namespace Controllers;
 
 use MVC\Router;
 
-class PaginasController {
+class LandingController {
     public static function index(Router $router) {
 
         //Render a la vista
