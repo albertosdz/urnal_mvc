@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Model\Proyecto;
 use MVC\Router;
 
 class DashboardController
@@ -21,9 +22,37 @@ class DashboardController
     public static function crear_proyecto(Router $router)
     {
         session_start();
-        
+        isAuth();
+        $alertas = [];
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $proyecto = new Proyecto($_POST);
+
+            // validación
+            $alertas = $proyecto->validarProyecto();
+
+            if (empty($alertas)) {
+                // Generar una URL única para el proyecto
+                $hash = md5(uniqid());
+                $proyecto->url = $hash;
+
+                // Almacenar usuario correspondiente al proyecto
+                $proyecto->usuarioId = (int) $_SESSION['id'];
+
+                // Guardar el proyecto
+                $resultado = $proyecto->guardar();
+
+                // Redireccionar
+                if ($resultado) {
+                    header('Location: /proyecto?id=' . $proyecto->url);
+                }
+                
+            }
+        }
+
         $router->render('dashboard/crear-proyecto', [
-            'titulo' => 'Crear Proyecto'
+            'titulo' => 'Crear Proyecto',
+            'alertas' => $alertas
         ]);
     }
     public static function perfil(Router $router)
