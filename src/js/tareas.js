@@ -1,12 +1,31 @@
 (function () {
   obtenerTareas();
   let tareas = [];
+  let filtradas = [];
 
   // Boton para el modal de las tareas
   const nuevaTareaBtn = document.querySelector("#agregar-tarea");
   nuevaTareaBtn.addEventListener("click", function () {
     mostrarFormulario();
   });
+
+  // Filtros de búsqueda
+  const filtros = document.querySelectorAll('#filtros input[type="radio"');
+  filtros.forEach((radio) => {
+    radio.addEventListener("input", filtrarTareas);
+  });
+
+  function filtrarTareas(e) {
+    const filtro = e.target.value;
+
+    if (filtro !== "") {
+      filtradas = tareas.filter((tarea) => tarea.estado === filtro);
+    } else {
+      filtradas = [];
+    }
+
+    mostrarTareas();
+  }
 
   async function obtenerTareas() {
     try {
@@ -24,7 +43,12 @@
 
   function mostrarTareas() {
     limpiarTareas();
-    if (tareas.length === 0) {
+    totalPendientes();
+    totalCompletadas();
+
+    const arrayTareas = filtradas.length ? filtradas : tareas;
+
+    if (arrayTareas.length === 0) {
       const contenedorTareas = document.querySelector("#listado-tareas");
 
       const textoNoTareas = document.createElement("LI");
@@ -40,7 +64,7 @@
       1: "Completa",
     };
 
-    tareas.forEach((tarea) => {
+    arrayTareas.forEach((tarea) => {
       const contenedorTarea = document.createElement("LI");
       contenedorTarea.dataset.tareaId = tarea.id;
       contenedorTarea.classList.add("tarea");
@@ -82,6 +106,28 @@
       const listadoTareas = document.querySelector("#listado-tareas");
       listadoTareas.appendChild(contenedorTarea);
     });
+  }
+
+  function totalPendientes() {
+    const totalPendientes = tareas.filter((tarea) => tarea.estado === "0");
+    const pendientesRadio = document.querySelector("#pendientes");
+
+    if (totalPendientes.length === 0) {
+      pendientesRadio.disabled = true;
+    } else {
+      pendientesRadio.disabled = false;
+    }
+  }
+
+  function totalCompletadas() {
+    const totalCompletadas = tareas.filter((tarea) => tarea.estado === "1");
+    const completadasRadio = document.querySelector("#completadas");
+
+    if (totalCompletadas.length === 0) {
+      completadasRadio.disabled = true;
+    } else {
+      completadasRadio.disabled = false;
+    }
   }
 
   function mostrarFormulario(editar = false, tarea = {}) {
@@ -251,11 +297,10 @@
       if (resultado.respuesta.tipo === "exito") {
         Swal.fire(resultado.respuesta.mensaje, "", "success");
 
-        const modal = document.querySelector('.modal');
+        const modal = document.querySelector(".modal");
         if (modal) {
           modal.remove();
         }
-        
 
         tareas = tareas.map((tareaMemoria) => {
           if (tareaMemoria.id === id) {
