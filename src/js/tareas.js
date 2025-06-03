@@ -138,7 +138,7 @@
             <form class="formulario nueva-tarea">
                 <legend>${editar ? "Editar Tarea" : "Añade una tarea"}</legend>
                 <div class="campo">
-                    <label>Tarea</label>
+                    <label for="tarea">Tarea</label>
                     <input
                         type="text"
                         name="tarea"
