@@ -12,6 +12,8 @@ class Usuario extends ActiveRecord
     public $email;
     public $password;
     public $password2;
+    public $contraseña_actual;
+    public $contraseña_nueva;
     public $token;
     public $confirmado;
 
@@ -22,12 +24,15 @@ class Usuario extends ActiveRecord
         $this->email = $args['email'] ?? '';
         $this->password = $args['password'] ?? '';
         $this->password2 = $args['password2'] ?? '';
+        $this->contraseña_actual = $args['contraseña_actual'] ?? '';
+        $this->contraseña_nueva = $args['contraseña_nueva'] ?? '';
         $this->token = $args['token'] ?? '';
         $this->confirmado = $args['confirmado'] ?? 0;
     }
 
     //Validación para cuentas nuevas
-    public function validarLogin() {
+    public function validarLogin()
+    {
         if (!$this->email) {
             self::$alertas['error'][] = 'El Email del Usuario es Obligatorio';
         }
@@ -88,6 +93,40 @@ class Usuario extends ActiveRecord
         }
 
         return self::$alertas;
+    }
+
+    // Valida perfil
+    public function validar_perfil()
+    {
+        if (!$this->nombre) {
+            self::$alertas['error'][] = 'El Nombre es Obligatorio';
+        }
+        if (!$this->email) {
+            self::$alertas['error'][] = 'El Email es Obligatorio';
+        }
+
+        return self::$alertas;
+    }
+
+    public function nueva_contraseña()
+    {
+        if (!$this->contraseña_actual) {
+            self::$alertas['error'][] = 'La contraseña actual no puede estar vacía';
+        }
+        if (!$this->contraseña_nueva) {
+            self::$alertas['error'][] = 'La nueva contraseña no puede estar vacía';
+        }
+        if (strlen($this->contraseña_nueva) < 6) {
+            self::$alertas['error'][] = 'La contraseña debe contener al menos 6 caracteres';
+        }
+
+        return self::$alertas;
+    }
+
+    // Comprobar contraseña
+    public function comprobar_contraseña(): bool
+    {
+        return password_verify($this->contraseña_actual, $this->password);
     }
 
     // Haseha la contraseña

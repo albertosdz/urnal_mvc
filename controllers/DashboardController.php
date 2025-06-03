@@ -3,6 +3,7 @@
 namespace Controllers;
 
 use Model\Proyecto;
+use Model\Usuario;
 use MVC\Router;
 
 class DashboardController
@@ -52,7 +53,6 @@ class DashboardController
                 if ($resultado) {
                     header('Location: /proyecto?id=' . $proyecto->url);
                 }
-                
             }
         }
 
@@ -62,14 +62,15 @@ class DashboardController
         ]);
     }
 
-    public static function proyecto(Router $router) {
+    public static function proyecto(Router $router)
+    {
 
         session_start();
         isAuth();
         $alertas = [];
 
         $token = $_GET['id'];
-        if(!$token) header('Location: /dashboard');
+        if (!$token) header('Location: /dashboard');
         // Aseguramos los proyectos para que sean privados
         $proyecto = Proyecto::where('url', $token);
         if ($proyecto->usuarioId !== $_SESSION['id']) {
@@ -84,9 +85,90 @@ class DashboardController
     public static function perfil(Router $router)
     {
         session_start();
+        isAuth();
+        $alertas = [];
+
+        $usuario = Usuario::find($_SESSION['id']);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $usuario->sincronizar($_POST);
+
+            $alertas = $usuario->validar_perfil();
+
+            if (empty($alertas)) {
+                $existeUsuario = Usuario::where('email', $usuario->email);
+
+                if ($existeUsuario && $existeUsuario->id !== $usuario->id) {
+                    // Alerta mensaje error
+                    Usuario::setAlerta('error', 'Email no válido, ya pertenece a otra cuenta');
+                    $alertas = $usuario->getAlertas();
+                } else {
+                    // Guardar nuevos datos
+                    $usuario->guardar();
+
+                    Usuario::setAlerta('exito', 'Guardado Correctamente');
+                    $alertas = $usuario->getAlertas();
+
+                    //Asignamos nuevos datos a la sesión
+                    $_SESSION['nombre'] = $usuario->nombre;
+                }
+            }
+        }
 
         $router->render('dashboard/perfil', [
-            'titulo' => 'Perfil'
+            'titulo' => 'Perfil',
+            'usuario' => $usuario,
+            'alertas' => $alertas
+        ]);
+    }
+
+    public static function cambiar_contraseña(Router $router)
+    {
+        session_start();
+        isAuth();
+
+        $alertas = [];
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $usuario = Usuario::find($_SESSION['id']);
+
+            // Sincronizar con los datos de usuario
+            $usuario->sincronizar($_POST);
+
+            $alertas = $usuario->nueva_contraseña();
+
+            if (empty($alertas)) {
+                $resultado = $usuario->comprobar_contraseña();
+
+                if ($resultado) {
+
+                    $usuario->password = $usuario->contraseña_nueva;
+
+                    unset($usuario->contraseña_actual);
+                    unset($usuario->contraseña_nueva);
+
+                    // Hashear nueva contraseña
+                    $usuario->hashPassword();
+
+                    // Actualizamos
+                    $resultado = $usuario->guardar();
+
+                    if ($resultado) {
+                        Usuario::setAlerta('exito', 'Contraseña Actuzalizada correctamente');
+                        $alertas = $usuario->getAlertas();
+                    }
+
+                } else {
+                    Usuario::setAlerta('error', 'Contraseña Incorrecta');
+                    $alertas = $usuario->getAlertas();
+                }
+            }
+        }
+
+        $router->render('dashboard/cambiar-contraseña', [
+            'titulo' => 'Cambiar Contraseña',
+            'alertas' => $alertas
         ]);
     }
 }
