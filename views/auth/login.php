@@ -8,7 +8,6 @@
 
         <form action="/login" method="post" class="formulario" novalidate>
             <div class="campo">
-                <label for="email">Email</label>
                 <input
                     type="email"
                     id="email"
@@ -16,7 +15,6 @@
                     name="email" />
             </div>
             <div class="campo">
-                <label for="password">Contraseña</label>
                 <input
                     type="password"
                     id="password"

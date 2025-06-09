@@ -1,19 +1,46 @@
-<aside class="sidebar">
+<div class="menu-btn sidebar-btn" id="sidebar-btn">
+    <img src="build/img/menu.svg" alt="arrow">
+    <img src="build/img/cerrar.svg" alt="arrow">
+</div>
+<aside class="sidebar" id="sidebar">
 
-    <div class="contenedor-sidebar">
-        <h2>Urnal</h2>
-        <div class="cerrar-menu">
-        <img src="build/img/cerrar.svg" alt="imagen cerrar menu" id="cerrar-menu">
-    </div>
+    <div class="menu-btn" id="menu-btn">
+        <img src="build/img/arrow.svg" alt="arrow">
     </div>
 
-    <nav class="sidebar-nav">
-        <a class="<?php echo ($titulo === 'Proyectos') ? 'activo' : ''; ?>" href="/dashboard">Proyectos</a>
-        <a class="<?php echo ($titulo === 'Crear Proyecto') ? 'activo' : ''; ?>" href="/crear-proyecto">Crear Proyecto</a>
-        <a class="<?php echo ($titulo === 'Perfil') ? 'activo' : ''; ?>" href="/perfil">Perfil</a>
+    <a href="/dashboard" class="brand">
+        <img src="build/img/logo.png" alt="logo">
+        <h2>rnal</h2>
+    </a>
+
+    <nav class="menu">
+        <div class="menu-item menu-item-static">
+            <a href="/dashboard" class="<?php echo ($titulo === 'Proyectos') ? 'activo' : ''; ?> menu-link">
+                <img src="build/img/proyectos.svg" alt="proyectos">
+                <p>Proyectos</p>
+            </a>
+        </div>
+
+        <div class="menu-item menu-item-static">
+            <a href="/crear-proyecto" class="<?php echo ($titulo === 'Crear Proyecto') ? 'activo' : ''; ?> menu-link">
+                <img src="build/img/crear.svg" alt="crear">
+                <p>Crear Proyecto</p>
+            </a>
+        </div>
+
+        <div class="menu-item menu-item-static">
+            <a href="/perfil" class="<?php echo ($titulo === 'Perfil') ? 'activo' : ''; ?> menu-link">
+                <img src="build/img/perfil.svg" alt="perfil">
+                <p>Perfil</p>
+            </a>
+        </div>
+
+        <div class="menu-item menu-item-static logout">
+            <a href="/logout" class="menu-link">
+                <img src="build/img/logout.svg" alt="perfil">
+                <p>Cerrar Sesión</p>
+            </a>
+        </div>
     </nav>
 
-    <div class="cerrar-sesion-mobile">
-        <a href="/logout" class="cerrar-sesion">Cerrar Sesión</a>
-    </div>
 </aside>

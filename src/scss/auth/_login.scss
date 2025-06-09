@@ -2,14 +2,26 @@
 @use "base/mixins" as m;
 
 .login {
+  .descripcion-pagina,
+  .tagline {
+    color: v.$blanco;
+  }
 
-    margin-top: 5rem;
+  position: absolute; /* o fixed */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: v.$azulPrimario;
+  padding: 3rem;
+  color: v.$blanco;
+  border-radius: 3rem;
+  box-shadow: 1px 1px 5px 0px rgba(53, 53, 53, 0.75);
 
-    .logo {
-        text-align: center
-    }
-    
-    input[type="submit"] {
-        @include m.boton(v.$cyan, v.$blanco);
-    }
+  .logo {
+    text-align: center;
+  }
+
+  input[type="submit"] {
+    @include m.boton(v.$blanco, v.$negro);
+  }
 }

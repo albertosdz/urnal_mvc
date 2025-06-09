@@ -9,7 +9,6 @@
 
         <form action="/olvide" method="post" class="formulario">
             <div class="campo">
-                <label for="email">Email</label>
                 <input
                     type="email"
                     id="email"

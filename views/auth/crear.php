@@ -7,7 +7,6 @@
 
         <form action="/crear" method="post" class="formulario">
             <div class="campo">
-                <label for="nombre">Nombre</label>
                 <input
                     type="text"
                     id="nombre"
@@ -17,7 +16,6 @@
 
             </div>
             <div class="campo">
-                <label for="email">Email</label>
                 <input
                     type="email"
                     id="email"
@@ -26,7 +24,6 @@
                     value="<?php echo $usuario->email; ?>" />
             </div>
             <div class="campo">
-                <label for="password">Contraseña</label>
                 <input
                     type="password"
                     id="password"
@@ -35,7 +32,6 @@
             </div>
 
             <div class="campo">
-                <label for="password2">Repetir Contraseña</label>
                 <input
                     type="password"
                     id="password2"

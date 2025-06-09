@@ -91,7 +91,16 @@
       const btnEliminarTarea = document.createElement("BUTTON");
       btnEliminarTarea.classList.add("eliminar-tarea");
       btnEliminarTarea.dataset.idTarea = tarea.id;
-      btnEliminarTarea.textContent = "Eliminar";
+
+      // Crear la imagen de la cruz
+      const imgCruz = document.createElement("img");
+      imgCruz.src = "build/img/eliminar.svg"; // cambia la ruta según tu estructura
+      imgCruz.alt = "Eliminar tarea";
+      imgCruz.classList.add("icono-cruz"); // opcional: para estilos
+
+      // Insertar la imagen en el botón
+      btnEliminarTarea.appendChild(imgCruz);
+
       btnEliminarTarea.onclick = function () {
         confirmarEliminarTarea({ ...tarea });
       };

@@ -4,5 +4,5 @@
     <div class="principal">
         <?php include_once __DIR__ . '/../templates/barra.php'; ?>
 
-        <div class="contenido">
-            <h2 class="nombre-pagina"><?php echo $titulo; ?></h2>
+        <div class="contenido <?php echo ($titulo === 'Crear Proyecto' || $titulo === 'Perfil' || $titulo === 'Cambiar Contraseña') ? 'form-centrado' : ''; ?>">
+            <h2 class="nombre-pagina "><?php echo $titulo; ?></h2>

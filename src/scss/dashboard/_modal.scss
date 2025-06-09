@@ -37,7 +37,7 @@
         justify-content: space-between;
     }
     .submit-nueva-tarea {
-        @include m.boton(v.$indigo, v.$blanco);
+        @include m.boton(v.$azulPrimario, v.$blanco);
     }
     .cerrar-modal {
         @include m.boton(v.$naranja, v.$blanco);

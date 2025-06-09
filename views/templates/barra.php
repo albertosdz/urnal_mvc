@@ -1,13 +1,13 @@
-<div class="barra-mobile">
-    <h1>Urnal</h1>
-
-    <div class="menu">
-        <img src="build/img/menu.svg" alt="imagen menu" id="mobile-menu">
-    </div>
+<div class="dark-mode-btn" id="dark-mode-btn">
+    <img src="build/img/moon.svg" alt="moon">
+    <img src="build/img/sun.svg" alt="moon">
 </div>
 
 <div class="barra">
-    <p>Hola: <span><?php echo $_SESSION['nombre']; ?></span></p>
+    <p> <span id="saludo"></span> <span class="nombre"><?php echo $_SESSION['nombre']; ?></span></p>
 
-    <a href="/logout" class="cerrar-sesion">Cerrar Sesión</a>
+    <div class="hora-fecha">
+        <span id="reloj"></span>
+        <span id="fecha"></span>
+    </div>
 </div>
