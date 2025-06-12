@@ -1,0 +1,181 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.landing {
+  .sticky-nav {
+    position: fixed;
+    top: 1rem;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    backdrop-filter: blur(40px);
+    background: rgba(111, 111, 111, 0.5);
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .contenedor-nav {
+      width: 100%;
+      max-width: 1200px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.7rem;
+        overflow: hidden;
+
+        padding: 1rem;
+
+        img {
+          width: 5rem;
+          transition: 0.3s ease;
+        }
+
+        &:hover {
+          img {
+            transform: rotate(-15deg);
+          }
+        }
+
+        h2 {
+          margin: 0;
+          padding: 0;
+          color: v.$blanco;
+        }
+      }
+
+      .secciones {
+        display: flex;
+        justify-content: space-between;
+        width: 50rem;
+
+        a {
+          color: v.$blanco;
+          padding: 1rem;
+          border-radius: 1rem;
+          &:hover {
+            background: #ececec37;
+          }
+        }
+      }
+
+      .botones {
+        display: flex;
+        gap: 2rem;
+      }
+    }
+
+    /* Oculta inicialmente */
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+
+    /* Transición suave */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+
+    @include m.mobile {
+      display: none;
+    }
+  }
+
+  .sticky-nav.visible {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+// Botón hamburguesa para menú móvil
+.menu-toggle {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+  margin-left: .5rem;
+  margin-right: .5rem;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(40px);
+  background: rgba(111, 111, 111, 0.5);
+  border-radius: 1rem;
+  border: none;
+  font-size: 2.5rem;
+  z-index: 11000;
+
+ a {
+  display: flex;
+  color: v.$negro;
+  gap: .3rem;
+ }
+
+  button {
+    cursor: pointer;
+    color: v.$blanco;
+    background: none;
+    border: none;
+    z-index: 12000;
+  }
+
+  .logo-mobile {
+    height: 6rem;
+    background: v.$blanco;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 1rem;
+
+    img {
+      height: 100%;
+    }
+  }
+
+  @include m.mobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+// Menú móvil lateral
+.menu-movil {
+  position: fixed;
+  top: 0;
+  margin-top: 8rem;
+  right: -100%;
+  width: 75%;
+  height: 100%;
+  background-color: lighten(v.$azulPrimario, 10%);
+  transition: right 0.3s ease;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  gap: 1.5rem;
+
+  &.visible {
+    right: 0;
+  }
+
+  a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: v.$blanco;
+    transition: color 0.2s;
+
+    &:hover {
+      color: darken(v.$blanco, 20%);
+    }
+  }
+}

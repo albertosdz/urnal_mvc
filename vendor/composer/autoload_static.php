@@ -6,6 +6,10 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit6aecca7e90477e7ed8820ebefc4169fc
 {
+    public static $files = array (
+        '43b8fd25443cba5555c2eb36e1481760' => __DIR__ . '/../..' . '/app/Helpers/funciones.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
         'P' => 
         array (
@@ -13,13 +17,14 @@ class ComposerStaticInit6aecca7e90477e7ed8820ebefc4169fc
         ),
         'M' => 
         array (
-            'Model\\' => 6,
             'MVC\\' => 4,
         ),
-        'C' => 
+        'A' => 
         array (
-            'Controllers\\' => 12,
-            'Classes\\' => 8,
+            'App\\Services\\' => 13,
+            'App\\Http\\Controllers\\' => 21,
+            'App\\Helpers\\' => 12,
+            'App\\Domain\\Models\\' => 18,
         ),
     );
 
@@ -28,21 +33,25 @@ class ComposerStaticInit6aecca7e90477e7ed8820ebefc4169fc
         array (
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
-        'Model\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/models',
-        ),
         'MVC\\' => 
         array (
             0 => __DIR__ . '/../..' . '/',
         ),
-        'Controllers\\' => 
+        'App\\Services\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/controllers',
+            0 => __DIR__ . '/../..' . '/app/Services',
         ),
-        'Classes\\' => 
+        'App\\Http\\Controllers\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/classes',
+            0 => __DIR__ . '/../..' . '/app/Http/Controllers',
+        ),
+        'App\\Helpers\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app/Helpers',
+        ),
+        'App\\Domain\\Models\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app/Domain/Models',
         ),
     );
 

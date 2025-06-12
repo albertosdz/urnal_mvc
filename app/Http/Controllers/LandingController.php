@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use MVC\Router;
+
+class LandingController {
+    public static function index(Router $router) {
+
+        //Render a la vista
+        $router->render('index', [
+            'titulo' => ''
+        ]);
+    }
+}

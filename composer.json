@@ -5,10 +5,14 @@
     "autoload": {
         "psr-4": {
             "MVC\\" : "./",
-            "Controllers\\" : "./controllers",
-            "Model\\" : "./models",
-            "Classes\\" : "./classes"
-        }
+            "App\\Http\\Controllers\\" : "./app/Http/Controllers",
+            "App\\Domain\\Models\\" : "./app/Domain/Models",
+            "App\\Services\\" : "./app/Services",
+            "App\\Helpers\\" : "./app/Helpers"
+        },
+        "files": [
+            "app/Helpers/funciones.php"
+        ]
     },
     "require": {
         "phpmailer/phpmailer": "^6.10"
