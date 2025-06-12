@@ -36,7 +36,7 @@
         </div>
 
         <div class="menu-item menu-item-static logout">
-            <a href="/logout" class="menu-link">
+            <a href="/logout" class="menu-link" id="logout-btn">
                 <img src="build/img/logout.svg" alt="perfil">
                 <p>Cerrar Sesión</p>
             </a>

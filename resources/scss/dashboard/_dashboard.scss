@@ -4,8 +4,7 @@
 .dashboard {
   //background: linear-gradient(to bottom, v.$grisClaro, v.$blanco);
   background: v.$azulSecundario;
-    height: 100vh;
-
+  height: 100vh;
 
   @include m.tablet {
     display: flex;

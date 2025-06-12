@@ -2,6 +2,33 @@
 @use "base/mixins" as m;
 
 .crear {
+  .logo-nombre {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    overflow: hidden;
+    background: v.$blanco;
+    padding: 2rem;
+    border-radius: 2rem;
+
+    img {
+      width: 5rem;
+      transition: 0.3s ease;
+    }
+
+    &:hover {
+      img {
+        transform: rotate(-15deg);
+      }
+    }
+
+    h1 {
+      margin: 0;
+      padding: 0;
+      color: v.$negro;
+    }
+  }
   .descripcion-pagina,
   .tagline {
     color: v.$blanco;

@@ -1,3 +1,10 @@
+/**
+ * Archivo de configuración de Gulp para automatizar tareas:
+ * - Compila archivos SCSS en CSS comprimido con sourcemaps.
+ * - Minifica archivos JavaScript.
+ * - Observa archivos SCSS y JS para ejecutar nuevamente las tareas correspondientes durante el desarrollo.
+ */
+
 import { src, dest, watch, series } from 'gulp'
 import * as dartSass from 'sass'
 import gulpSass from 'gulp-sass'
@@ -10,6 +17,10 @@ const paths = {
     js: 'public/js/**/*.js'
 }
 
+/**
+ * Compila archivos SCSS a CSS comprimido con sourcemaps.
+ * El CSS resultante se guarda en './public/build/css'.
+ */
 export function css( done ) {
     src(paths.scss, {sourcemaps: true})
         .pipe( sass({
@@ -19,6 +30,10 @@ export function css( done ) {
     done()
 }
 
+/**
+ * Minifica archivos JavaScript.
+ * Los archivos resultantes se guardan en './public/build/js'.
+ */
 export function js( done ) {
     src(paths.js)
       .pipe(terser())
@@ -26,6 +41,10 @@ export function js( done ) {
     done()
 }
 
+/**
+ * Observa archivos SCSS y JS para detectar cambios.
+ * Al cambiar, ejecuta la tarea correspondiente de css o js.
+ */
 export function dev() {
     watch( paths.scss, css );
     watch( paths.js, js );

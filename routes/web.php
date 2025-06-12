@@ -1,4 +1,16 @@
 <?php
+/**
+ * Archivo de rutas principales de la aplicación.
+ *
+ * Este archivo define todas las rutas de la aplicación, asociando URLs específicas a
+ * métodos concretos de los controladores correspondientes.
+ *
+ * Utiliza una instancia de Router para registrar rutas de tipo GET y POST,
+ * permitiendo así la gestión de la navegación y peticiones de la aplicación.
+ *
+ * Al final del archivo, se verifica y despachan las rutas registradas,
+ * asegurando que cada URL invoque el método adecuado del controlador.
+ */
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LandingController;

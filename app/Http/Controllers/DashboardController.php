@@ -1,13 +1,31 @@
 <?php
 
+/**
+ * Controlador para manejar las funcionalidades del dashboard del usuario,
+ * incluyendo la gestión de proyectos, perfil y cambio de contraseña.
+ */
+
 namespace App\Http\Controllers;
 
 use App\Domain\Models\Proyecto;
 use App\Domain\Models\Usuario;
 use MVC\Router;
 
+/**
+ * Class DashboardController
+ *
+ * Controla las operaciones relacionadas con el dashboard del usuario,
+ * tales como visualización de proyectos, creación de nuevos proyectos,
+ * gestión del perfil y cambio de contraseña.
+ */
 class DashboardController
 {
+    /**
+     * Muestra la lista de proyectos asociados al usuario autenticado.
+     *
+     * @param Router $router Instancia del enrutador para renderizar vistas.
+     * @return void
+     */
     public static function index(Router $router)
     {
 
@@ -26,6 +44,12 @@ class DashboardController
         ]);
     }
 
+    /**
+     * Gestiona la creación de un nuevo proyecto por parte del usuario.
+     *
+     * @param Router $router Instancia del enrutador para renderizar vistas.
+     * @return void
+     */
     public static function crear_proyecto(Router $router)
     {
         session_start();
@@ -62,6 +86,13 @@ class DashboardController
         ]);
     }
 
+    /**
+     * Muestra la información de un proyecto específico asegurando que
+     * el usuario tenga acceso a él.
+     *
+     * @param Router $router Instancia del enrutador para renderizar vistas.
+     * @return void
+     */
     public static function proyecto(Router $router)
     {
 
@@ -82,6 +113,12 @@ class DashboardController
         ]);
     }
 
+    /**
+     * Permite al usuario visualizar y actualizar su perfil.
+     *
+     * @param Router $router Instancia del enrutador para renderizar vistas.
+     * @return void
+     */
     public static function perfil(Router $router)
     {
         session_start();
@@ -123,6 +160,12 @@ class DashboardController
         ]);
     }
 
+    /**
+     * Permite al usuario cambiar su contraseña actual.
+     *
+     * @param Router $router Instancia del enrutador para renderizar vistas.
+     * @return void
+     */
     public static function cambiar_contraseña(Router $router)
     {
         session_start();

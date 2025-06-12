@@ -7,6 +7,6 @@
         <p class="descripcion-pagina">Hemos enviado instrucciones a tu email</p>
     </div>
     <div class="acciones">
-        <a href="/login">Inicia Sesión</a>
+        <a class="boton" href="/login">Inicia Sesión</a>
     </div>
 </div>

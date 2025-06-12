@@ -4,12 +4,23 @@ namespace App\Services;
 
 use PHPMailer\PHPMailer\PHPMailer;
 
+/**
+ * Clase para manejar el envío de correos electrónicos relacionados con la cuenta de usuario,
+ * como confirmación de cuenta y recuperación de contraseña.
+ */
 class Email
 {
     protected $email;
     protected $nombre;
     protected $token;
 
+    /**
+     * Constructor de la clase Email.
+     *
+     * @param string $email  Dirección de correo electrónico del destinatario.
+     * @param string $nombre Nombre del destinatario.
+     * @param string $token  Token único para la confirmación o recuperación.
+     */
     public function __construct($email, $nombre, $token)
     {
         $this->email = $email;
@@ -17,19 +28,25 @@ class Email
         $this->token = $token;
     }
 
+    /**
+     * Envía un correo electrónico para la confirmación de la cuenta del usuario.
+     *
+     * @return void
+     */
     public function enviarConfirmacion()
     {
         // Looking to send emails in production? Check out our Email API/SMTP product!
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = 'sandbox.smtp.mailtrap.io';
+        $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Port = 2525;
-        $mail->Username = 'a95a51028d67d6';
-        $mail->Password = 'a6cc2c809bc027';
+        $mail->Port = 587;
+        $mail->Username = 'urnalapp@gmail.com';
+        $mail->Password = 'wjot dubc mvyl rykl';
+        $mail->SMTPSecure = 'tls';
 
-        $mail->setFrom('cuentas@urnal.com');
-        $mail->addAddress('cuentas@urnal.com', 'urnal.com');
+        $mail->setFrom('urnalapp@gmail.com', 'Urnal');
+        $mail->addAddress($this->email, $this->nombre);
         $mail->Subject = 'Confirma tu cuenta';
 
         $mail->isHTML(TRUE);
@@ -50,19 +67,25 @@ class Email
         $mail->send();
     }
 
+    /**
+     * Envía un correo electrónico con instrucciones para recuperar la contraseña.
+     *
+     * @return void
+     */
     public function enviarInstrucciones()
     {
         // Looking to send emails in production? Check out our Email API/SMTP product!
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = 'sandbox.smtp.mailtrap.io';
+        $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Port = 2525;
-        $mail->Username = 'a95a51028d67d6';
-        $mail->Password = 'a6cc2c809bc027';
+        $mail->Port = 587;
+        $mail->Username = 'urnalapp@gmail.com';
+        $mail->Password = 'wjot dubc mvyl rykl';
+        $mail->SMTPSecure = 'tls';
 
-        $mail->setFrom('cuentas@urnal.com');
-        $mail->addAddress('cuentas@urnal.com', 'urnal.com');
+        $mail->setFrom('urnalapp@gmail.com', 'Urnal');
+        $mail->addAddress($this->email, $this->nombre);
         $mail->Subject = 'Recuperación de contraseña';
 
         $mail->isHTML(TRUE);

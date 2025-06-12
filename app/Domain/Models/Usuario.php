@@ -2,6 +2,15 @@
 
 namespace App\Domain\Models;
 
+/**
+ * Clase Usuario
+ *
+ * Modelo que representa a los usuarios del sistema.
+ * Proporciona métodos para la gestión de usuarios, validación de datos,
+ * autenticación y utilidades relacionadas con la seguridad.
+ *
+ * @package App\Domain\Models
+ */
 class Usuario extends ActiveRecord
 {
     protected static $tabla = 'usuarios';
@@ -17,6 +26,13 @@ class Usuario extends ActiveRecord
     public $token;
     public $confirmado;
 
+    /**
+     * Constructor de la clase Usuario.
+     *
+     * Inicializa las propiedades del usuario usando los valores proporcionados en el array asociativo.
+     *
+     * @param array $args Array asociativo con los valores para inicializar el usuario.
+     */
     public function __construct($args = [])
     {
         $this->id = $args['id'] ?? null;
@@ -30,7 +46,11 @@ class Usuario extends ActiveRecord
         $this->confirmado = $args['confirmado'] ?? 0;
     }
 
-    //Validación para cuentas nuevas
+    /**
+     * Valida los datos necesarios para el inicio de sesión del usuario.
+     *
+     * @return array Alertas generadas durante la validación.
+     */
     public function validarLogin()
     {
         if (!$this->email) {
@@ -46,7 +66,11 @@ class Usuario extends ActiveRecord
         return self::$alertas;
     }
 
-    // Validación para cuentas nuevas
+    /**
+     * Valida los datos necesarios para crear una nueva cuenta de usuario.
+     *
+     * @return array Alertas generadas durante la validación.
+     */
     public function validarNuevaCuenta()
     {
         if (!$this->nombre) {
@@ -68,7 +92,11 @@ class Usuario extends ActiveRecord
         return self::$alertas;
     }
 
-    // Valida un email
+    /**
+     * Valida el email del usuario.
+     *
+     * @return array Alertas generadas durante la validación.
+     */
     public function validarEmail()
     {
         if (!$this->email) {
@@ -82,7 +110,11 @@ class Usuario extends ActiveRecord
         return self::$alertas;
     }
 
-    // Valida la contraseña
+    /**
+     * Valida la contraseña del usuario.
+     *
+     * @return array Alertas generadas durante la validación.
+     */
     public function validarPassword()
     {
         if (!$this->password) {
@@ -95,7 +127,11 @@ class Usuario extends ActiveRecord
         return self::$alertas;
     }
 
-    // Valida perfil
+    /**
+     * Valida los datos del perfil del usuario.
+     *
+     * @return array Alertas generadas durante la validación.
+     */
     public function validar_perfil()
     {
         if (!$this->nombre) {
@@ -108,6 +144,11 @@ class Usuario extends ActiveRecord
         return self::$alertas;
     }
 
+    /**
+     * Valida el cambio de contraseña del usuario.
+     *
+     * @return array Alertas generadas durante la validación.
+     */
     public function nueva_contraseña()
     {
         if (!$this->contraseña_actual) {
@@ -123,20 +164,32 @@ class Usuario extends ActiveRecord
         return self::$alertas;
     }
 
-    // Comprobar contraseña
+    /**
+     * Comprueba si la contraseña actual introducida es correcta.
+     *
+     * @return bool True si la contraseña es correcta, false en caso contrario.
+     */
     public function comprobar_contraseña(): bool
     {
         return password_verify($this->contraseña_actual, $this->password);
     }
 
-    // Haseha la contraseña
-    public function hashPassword()
+    /**
+     * Hashea la contraseña del usuario utilizando BCRYPT.
+     *
+     * @return void
+     */
+    public function hashPassword(): void
     {
         $this->password = password_hash($this->password, PASSWORD_BCRYPT);
     }
 
-    // Generar un Token
-    public function crearToken()
+    /**
+     * Genera un token único para el usuario.
+     *
+     * @return void
+     */
+    public function crearToken(): void
     {
         $this->token = uniqid();
     }

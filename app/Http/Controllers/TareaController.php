@@ -1,12 +1,28 @@
 <?php
 
+/**
+ * Controlador para manejar las operaciones relacionadas con las tareas.
+ * Proporciona métodos para listar, crear, actualizar y eliminar tareas
+ * asociadas a proyectos específicos.
+ */
+
 namespace App\Http\Controllers;
 
 use App\Domain\Models\Proyecto;
 use App\Domain\Models\Tarea;
 
+/**
+ * Clase TareaController
+ *
+ * Responsable de gestionar las operaciones CRUD de las tareas dentro de un proyecto.
+ */
 class TareaController
 {
+    /**
+     * Obtiene y devuelve en formato JSON todas las tareas asociadas a un proyecto.
+     *
+     * @return void Imprime un JSON con las tareas o redirige en caso de error.
+     */
     public static function index()
     {
 
@@ -24,6 +40,11 @@ class TareaController
 
         echo json_encode(['tareas' => $tareas]);
     }
+    /**
+     * Crea una nueva tarea asociada a un proyecto después de validar permisos.
+     *
+     * @return void Imprime un JSON con el resultado de la operación.
+     */
     public static function crear()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -56,6 +77,11 @@ class TareaController
             echo json_encode($respuesta);
         }
     }
+    /**
+     * Actualiza una tarea existente después de validar permisos.
+     *
+     * @return void Imprime un JSON con el resultado de la operación.
+     */
     public static function actualizar()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -88,6 +114,11 @@ class TareaController
             }
         }
     }
+    /**
+     * Elimina una tarea después de validar permisos.
+     *
+     * @return void Imprime un JSON con el resultado de la operación.
+     */
     public static function eliminar()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

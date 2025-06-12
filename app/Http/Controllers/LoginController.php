@@ -1,13 +1,30 @@
 <?php
 
+/**
+ * Controlador para gestionar la autenticación y administración de usuarios.
+ * Maneja el inicio de sesión, cierre de sesión, creación de cuenta, recuperación y restablecimiento de contraseña,
+ * así como la confirmación de cuentas mediante tokens.
+ */
+
 namespace App\Http\Controllers;
 
 use App\Services\Email;
 use App\Domain\Models\Usuario;
 use MVC\Router;
 
+/**
+ * Clase LoginController
+ * 
+ * Controlador responsable de las operaciones relacionadas con el login y la gestión de usuarios.
+ */
 class LoginController
 {
+    /**
+     * Muestra el formulario de inicio de sesión y procesa el login de usuarios.
+     *
+     * @param Router $router Router para renderizar vistas.
+     * @return void
+     */
     public static function login(Router $router)
     {
         $alertas=[];
@@ -53,12 +70,23 @@ class LoginController
             'alertas' => $alertas
         ]);
     }
+    /**
+     * Cierra la sesión del usuario y redirige al inicio.
+     *
+     * @return void
+     */
     public static function logout()
     {
         session_start();
         $_SESSION = [];
         header('Location: /');
     }
+    /**
+     * Muestra el formulario de creación de cuenta y procesa el registro de nuevos usuarios.
+     *
+     * @param Router $router Router para renderizar vistas.
+     * @return void
+     */
     public static function crear(Router $router)
     {
         $alertas = [];
@@ -105,6 +133,12 @@ class LoginController
             'alertas' => $alertas
         ]);
     }
+    /**
+     * Muestra el formulario para solicitar recuperación de contraseña y envía instrucciones por email.
+     *
+     * @param Router $router Router para renderizar vistas.
+     * @return void
+     */
     public static function olvide(Router $router)
     {
         $alertas = [];
@@ -147,6 +181,12 @@ class LoginController
             'alertas' => $alertas
         ]);
     }
+    /**
+     * Permite restablecer la contraseña utilizando un token válido.
+     *
+     * @param Router $router Router para renderizar vistas.
+     * @return void
+     */
     public static function reestablecer(Router $router)
     {
         $token = s($_GET['token']);
@@ -198,6 +238,12 @@ class LoginController
             'mostrarInput' => $mostrarInput
         ]);
     }
+    /**
+     * Muestra un mensaje informativo tras la creación de una cuenta.
+     *
+     * @param Router $router Router para renderizar vistas.
+     * @return void
+     */
     public static function mensaje(Router $router)
     {
         //Render a la vista
@@ -205,6 +251,12 @@ class LoginController
             'titulo' => ' | Cuenta Creada Correctamente'
         ]);
     }
+    /**
+     * Confirma la cuenta de usuario mediante un token enviado por email.
+     *
+     * @param Router $router Router para renderizar vistas.
+     * @return void
+     */
     public static function confirmar(Router $router)
     {
         $token = s($_GET['token']);

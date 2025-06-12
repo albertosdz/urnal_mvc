@@ -1,4 +1,13 @@
 <?php
+/**
+ * Configuración general de la aplicación.
+ *
+ * Este archivo contiene la configuración principal de la aplicación,
+ * incluyendo parámetros como el entorno, la base de datos y el correo electrónico.
+ * Utiliza variables de entorno para una configuración segura y flexible.
+ *
+ * @package Config
+ */
 
 return [
     'name' => 'Urnal',
