@@ -1,38 +1,7 @@
-/* const mobileMenuBtn = document.querySelector("#mobile-menu");
-const cerrarMenuBtn = document.querySelector("#cerrar-menu");
-const sidebar = document.querySelector(".sidebar"); */
-
-/* if (mobileMenuBtn) {
-  mobileMenuBtn.addEventListener("click", function () {
-    sidebar.classList.add("mostrar");
-    });
-    }
-    if (cerrarMenuBtn) {
-      cerrarMenuBtn.addEventListener("click", function () {
-        sidebar.classList.add("ocultar");
-        setTimeout(() => {
-          sidebar.classList.remove("mostrar");
-          sidebar.classList.remove("ocultar");
-          }, 600);
-          });
-          }
-          
-          // Es necesario eliminar la clase de mostrar del sidebar
-          const anchoPantalla = document.body.clientWidth;
-          
-          window.addEventListener("resize", function () {
-            const anchoPantalla = document.body.clientWidth;
-            
-            if (anchoPantalla >= 768) {
-              sidebar.classList.remove("mostrar");
-              }
-              }); */
-
 const sidebar = document.getElementById("sidebar");
 const menuBtn = document.getElementById("menu-btn");
 const sidebarBtn = document.getElementById("sidebar-btn");
 const darkModeBtn = document.getElementById("dark-mode-btn");
-
 
 if (localStorage.getItem("darkModeEnabled") === "true") {
   document.documentElement.classList.add("dark-mode");
@@ -92,7 +61,7 @@ function actualizarHoraYFecha() {
   // Formato de hora: hh:mm
   const hora = ahora.toLocaleTimeString("es-ES", {
     hour: "2-digit",
-    minute: "2-digit"
+    minute: "2-digit",
   });
 
   // Formato de fecha: lunes, 11 de junio de 2025
@@ -100,7 +69,7 @@ function actualizarHoraYFecha() {
     weekday: "long",
     day: "numeric",
     month: "long",
-    year: "numeric"
+    year: "numeric",
   });
 
   reloj.textContent = hora;
@@ -110,3 +79,4 @@ function actualizarHoraYFecha() {
 // Actualiza cada segundo
 setInterval(actualizarHoraYFecha, 1000);
 actualizarHoraYFecha(); // Llamada inicial
+

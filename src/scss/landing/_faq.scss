@@ -1,0 +1,55 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.landing {
+  .landing-contenido {
+    .faq {
+      width: 90%;
+      scroll-margin-top: 100px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+
+      &__description {
+        text-align: center;
+      }
+
+      &__filters {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-bottom: 4rem;
+        gap: 1rem;
+      }
+
+      @include m.mobile {
+        &__filters {
+          flex-direction: column;
+        }
+      }
+
+      &__title {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      &__item {
+        margin-bottom: 2rem;
+        background: #f9f9f9;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      &__question {
+        margin-bottom: 0.5rem;
+        font-size: 1.8rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,107 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.landing {
+  .landing-contenido {
+    margin: 0 auto;
+    text-align: center;
+    .beneficios {
+      margin-bottom: 4rem;
+
+      .beneficios__titulo,
+      .beneficios__descripcion {
+        text-align: center;
+      }
+    }
+    .beneficios__carrusel {
+      display: flex;
+      overflow: hidden;
+      position: relative;
+      scroll-behavior: smooth;
+      border-radius: 2rem;
+      box-shadow: 0px 0px 50px -9px rgba(0,0,0,0.1);
+      margin: 0 auto;
+      width: 70%;
+
+      #beneficio1 {
+        background-image: linear-gradient(90deg, #89f7fe 0%, #66a6ff 100%);
+        
+      }
+
+      #beneficio2 {
+        background-image:linear-gradient(90deg, #667eea 0%, #764ba2 100%)
+      }
+
+      #beneficio3 {
+        background-image: linear-gradient(135deg, #f7971e, #ffd200);
+      }
+
+      .carrusel__slide {
+        background-size: cover;
+        background-position: center;
+        padding: 2rem; // Para que el contenido no quede pegado al borde
+        color: white; // Si las imágenes son oscuras, esto mejora la legibilidad
+        min-height: 300px; // o lo que necesites
+        min-width: 100%;
+        transition: opacity 0.5s ease-in-out;
+        flex-shrink: 0;
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: rgba(189, 189, 189, 0.2);
+          z-index: 0;
+        }
+
+        &.activo {
+          opacity: 1;
+          pointer-events: auto;
+          position: relative;
+        }
+      }
+
+      .carrusel__contenido {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+
+        p {
+            color: v.$blanco;
+        }
+      }
+    }
+
+    .beneficios__navegacion {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+
+      button {
+        background-color: #fff;
+        border: none;
+        padding: 0.5rem 1rem;
+        font-size: 1.5rem;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #eee;
+        }
+      }
+    }
+  }
+}

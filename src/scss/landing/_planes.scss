@@ -1,0 +1,66 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.landing {
+  .landing-contenido {
+    .planes {
+      scroll-margin-top: 100px;
+      margin-bottom: 4rem;
+      .planes__titulo {
+        text-align: center;
+        .planes__titulo-texto {
+          font-size: 3.6rem;
+        }
+      }
+
+      .seccion__planes {
+        margin-top: 5rem;
+        margin-bottom: 5rem;
+        display: flex;
+        justify-content: space-evenly;
+        gap: 2rem;
+        .planes__plan {
+          width: 37rem;
+          box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.399);
+          border-radius: 1rem;
+          padding: 3rem;
+          transition: ease 0.3s;
+
+          .planes__plan-precio-cantidad {
+            font-size: 4rem;
+            font-weight: 700;
+          }
+
+          &:hover {
+            transform: scale(1.1);
+          }
+          .planes__plan-lista {
+            list-style: none;
+            line-height: 1.8;
+            padding: 0; /* Opcional: elimina el padding izquierdo predeterminado */
+            margin: 0; /* Opcional: elimina el margen predeterminado */
+          }
+          @include m.mobile {
+            .planes__plan-separador,
+            .planes__plan-subtitulo,
+            .planes__plan-lista {
+              display: none;
+            }
+
+            margin-bottom: 2rem;
+
+            &:hover {
+              transform: none;
+            }
+            width: 90%;
+          }
+        }
+
+        @include m.mobile {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    }
+  }
+}

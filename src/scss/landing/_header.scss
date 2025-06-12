@@ -1,0 +1,109 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+html {
+  scroll-behavior: smooth;
+}
+
+.landing {
+  h2 {
+    font-size: 4rem;
+  }
+
+  .header {
+    background-image: linear-gradient(
+      to bottom,
+      #599cff,
+      #a8bfff,
+      #ccd3fe,
+      #e8e8fe,
+      #ffffff
+    );
+
+    .header__nav {
+      padding: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      @include m.mobile {
+        display: none;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.7rem;
+        overflow: hidden;
+        background: v.$blanco;
+        padding: 2rem;
+        border-radius: 2rem;
+
+        img {
+          width: 5rem;
+          transition: 0.3s ease;
+        }
+
+        &:hover {
+          img {
+            transform: rotate(-15deg);
+          }
+        }
+
+        h2 {
+          margin: 0;
+          padding: 0;
+          color: v.$negro;
+        }
+      }
+
+      .secciones {
+        display: flex;
+        justify-content: space-between;
+        width: 50rem;
+
+        a {
+          color: v.$blanco;
+          padding: 1rem;
+          border-radius: 1rem;
+          &:hover {
+            background: #ececec37;
+          }
+        }
+      }
+
+      .botones {
+        display: flex;
+        gap: 2rem;
+      }
+    }
+
+    .hero-component {
+      text-align: center;
+      margin: 15rem auto;
+      width: 70rem;
+
+      .boton-principal {
+        margin: 0 auto;
+        width: fit-content;
+      }
+
+      @include m.mobile {
+        width: 95%;
+        margin-top: 8rem;
+        h1 {
+        padding-top: 5rem;
+          font-size: 4rem;
+        }
+      }
+    }
+  }
+
+  .boton-principal {
+    @include m.boton(v.$azulPrimario, v.$blanco);
+  }
+  .boton-secundario {
+    @include m.boton(#ececec37, v.$gris);
+  }
+}
