@@ -10,11 +10,11 @@
  */
 
 return [
-    'name' => 'Urnal',
-    'env' => 'development',
-    'debug' => true,
-    'url' => 'http://localhost',
-    'timezone' => 'Europe/Madrid',
+    'name' => $_ENV['APP_NAME'] ?? 'Urnal',
+    'env' => $_ENV['APP_ENV'] ?? 'development',
+    'debug' => filter_var($_ENV['APP_DEBUG'] ?? true, FILTER_VALIDATE_BOOLEAN),
+    'url' => $_ENV['APP_URL'] ?? 'http://localhost',
+    'timezone' => $_ENV['APP_TIMEZONE'] ?? 'Europe/Madrid',
     
     // Database configuration
     'database' => [

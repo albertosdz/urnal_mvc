@@ -11,10 +11,12 @@
             "App\\Helpers\\" : "./app/Helpers"
         },
         "files": [
-            "app/Helpers/funciones.php"
+            "app/Helpers/funciones.php",
+            "app/Helpers/Config.php"
         ]
     },
     "require": {
-        "phpmailer/phpmailer": "^6.10"
+        "phpmailer/phpmailer": "^6.10",
+        "vlucas/phpdotenv": "^5.6"
     }
 }

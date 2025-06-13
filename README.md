@@ -67,12 +67,41 @@ Make sure you have the following installed:
    composer install
    ```
 
-3. Install Node.js dependencies:
+3. **Configure environment variables**:
+   Copy the `.env.example` file and rename it to `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+   
+   Edit the `.env` file and configure your settings:
+   ```bash
+   # Database configuration
+   DB_HOST=localhost
+   DB_PORT=3306
+   DB_DATABASE=urnal_mvc
+   DB_USERNAME=root
+   DB_PASSWORD=your_password
+   
+   # Email configuration (for Gmail)
+   MAIL_HOST=smtp.gmail.com
+   MAIL_PORT=587
+   MAIL_USERNAME=your_email@gmail.com
+   MAIL_PASSWORD=your_app_password
+   
+   # Application configuration
+   APP_NAME=Urnal
+   APP_ENV=development
+   APP_DEBUG=true
+   APP_URL=http://localhost:3000
+   APP_TIMEZONE=Europe/Madrid
+   ```
+
+4. Install Node.js dependencies:
    ```bash
    npm install
    ```
 
-4. Build frontend assets:
+5. Build frontend assets:
    ```bash
    npm start
    ```
@@ -81,18 +110,19 @@ Make sure you have the following installed:
    gulp
    ```
 
-5. Configure your web server to use the `public` directory as the document root.
+6. Set up your database (create the database specified in `.env`):
+   ```sql
+   CREATE DATABASE urnal_mvc;
+   ```
+
+7. Configure your web server to use the `public` directory as the document root.
    ```bash
    php {entrypoint} 
    ```
    For Example:
    ```bash
-   php -S localhost:3000 
+   php -S localhost:3000 -t public
    ```
-
-
-
-6. Set up your database and update connection settings in the config file.
 
 ---
 
@@ -106,6 +136,32 @@ Make sure you have the following installed:
    ```
 
 3. Open your browser at `http://localhost` or your configured virtual host.
+
+---
+
+## 📋 Environment Variables
+
+### Database Configuration
+- `DB_HOST`: Database host (default: localhost)
+- `DB_PORT`: Database port (default: 3306)
+- `DB_DATABASE`: Database name
+- `DB_USERNAME`: Database username
+- `DB_PASSWORD`: Database password
+
+### Email Configuration
+- `MAIL_HOST`: SMTP server host
+- `MAIL_PORT`: SMTP server port
+- `MAIL_USERNAME`: Email username
+- `MAIL_PASSWORD`: Email password (use app passwords for Gmail)
+
+### Application Configuration
+- `APP_NAME`: Application name
+- `APP_ENV`: Environment (development, production)
+- `APP_DEBUG`: Enable/disable debug mode (true/false)
+- `APP_URL`: Base URL of the application
+- `APP_TIMEZONE`: Application timezone
+
+**Important**: Never commit your `.env` file to version control. The `.env.example` file should be used as a template.
 
 ---
 

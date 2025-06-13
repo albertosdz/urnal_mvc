@@ -20,8 +20,29 @@ function debuguear($variable) : string {
  * @return string La cadena escapada y segura para mostrar en HTML.
  */
 function s($html) : string {
-    $s = htmlspecialchars($html);
-    return $s;
+    return htmlspecialchars($html);
+}
+
+/**
+ * Helper para acceder a la configuración de la aplicación
+ * 
+ * @param string $key Clave de configuración
+ * @param mixed $default Valor por defecto
+ * @return mixed
+ */
+function config($key, $default = null) {
+    return \App\Helpers\Config::get($key, $default);
+}
+
+/**
+ * Helper para acceder a variables de entorno
+ * 
+ * @param string $key Nombre de la variable de entorno
+ * @param mixed $default Valor por defecto
+ * @return mixed
+ */
+function env($key, $default = null) {
+    return $_ENV[$key] ?? $default;
 }
 
 /**
