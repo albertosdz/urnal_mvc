@@ -3,7 +3,7 @@
 <div class="contenedor-sm">
     <?php include_once __DIR__ . '/../partials/alertas.php' ?>
 
-    <a href="/cambiar-contraseña" class="enlace" >Cambiar Contraseña</a>
+    <a href="/cambiar-password" class="enlace">Cambiar Contraseña</a>
 
     <form class="formulario" method="post" action="/perfil">
         <div class="campo">

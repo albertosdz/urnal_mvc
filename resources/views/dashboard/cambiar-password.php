@@ -6,7 +6,7 @@
     <a href="/perfil" class="enlace" >Editar Perfil</a>
 
 
-    <form class="formulario" method="post" action="/cambiar-contraseña">
+    <form class="formulario" method="post" action="/cambiar-password">
         <div class="campo">
             <label for="contraseña_actual">Contraseña Actual</label>
             <input

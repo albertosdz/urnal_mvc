@@ -209,7 +209,7 @@ class DashboardController
             }
         }
 
-        $router->render('dashboard/cambiar-contraseña', [
+        $router->render('dashboard/cambiar-password', [
             'titulo' => 'Cambiar Contraseña',
             'alertas' => $alertas
         ]);
