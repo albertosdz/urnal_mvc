@@ -1,4 +1,3 @@
-#Reenombrando 
 # Imagen base con Apache y PHP
 FROM php:8.2-apache
 
