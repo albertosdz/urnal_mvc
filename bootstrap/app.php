@@ -13,20 +13,17 @@ if (file_exists(__DIR__ . '/../.env')) {
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
     $dotenv->load();
 } else {
-    // Si no existe .env, mostrar mensaje de error útil
-    if (php_sapi_name() !== 'cli') {
-        echo '<h2>Error de Configuración</h2>';
-        echo '<p>El archivo <code>.env</code> no existe. Para configurar la aplicación:</p>';
-        echo '<ol>';
-        echo '<li>Copia el archivo <code>.env.example</code> y renómbralo a <code>.env</code></li>';
-        echo '<li>Configura las variables de entorno según tu ambiente</li>';
-        echo '<li>Recarga la página</li>';
-        echo '</ol>';
-        echo '<p>Consulta el README.md para más información.</p>';
-        exit;
-    } else {
-        echo "Error: El archivo .env no existe. Copia .env.example a .env y configura las variables.\n";
-        exit(1);
+    // Si no existe .env, intentamos continuar si hay variables de entorno ya definidas (por ejemplo, desde Render)
+    if (!getenv('DB_HOST')) {
+        if (php_sapi_name() !== 'cli') {
+            echo '<h2>Error de Configuración</h2>';
+            echo '<p>El archivo <code>.env</code> no existe y no se han detectado variables de entorno.</p>';
+            echo '<p>Consulta el README.md para más información.</p>';
+            exit;
+        } else {
+            echo "Error: No se encontró .env ni variables de entorno definidas.\n";
+            exit(1);
+        }
     }
 }
 
