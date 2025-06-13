@@ -10,28 +10,28 @@
  */
 
 return [
-    'name' => $_ENV['APP_NAME'] ?? 'Urnal',
-    'env' => $_ENV['APP_ENV'] ?? 'development',
-    'debug' => filter_var($_ENV['APP_DEBUG'] ?? true, FILTER_VALIDATE_BOOLEAN),
-    'url' => $_ENV['APP_URL'] ?? 'http://localhost',
-    'timezone' => $_ENV['APP_TIMEZONE'] ?? 'Europe/Madrid',
+    'name' => getenv('APP_NAME') ?: 'Urnal',
+    'env' => getenv('APP_ENV') ?: 'development',
+    'debug' => filter_var(getenv('APP_DEBUG') ?: true, FILTER_VALIDATE_BOOLEAN),
+    'url' => getenv('APP_URL') ?: 'http://localhost',
+    'timezone' => getenv('APP_TIMEZONE') ?: 'Europe/Madrid',
     
     // Database configuration
     'database' => [
-        'host' => $_ENV['DB_HOST'] ?? 'localhost',
-        'port' => $_ENV['DB_PORT'] ?? '3306',
-        'database' => $_ENV['DB_DATABASE'] ?? 'urnal',
-        'username' => $_ENV['DB_USERNAME'] ?? 'root',
-        'password' => $_ENV['DB_PASSWORD'] ?? '',
+        'host' => getenv('DB_HOST') ?: 'localhost',
+        'port' => getenv('DB_PORT') ?: '3306',
+        'database' => getenv('DB_DATABASE') ?: 'urnal',
+        'username' => getenv('DB_USERNAME') ?: 'root',
+        'password' => getenv('DB_PASSWORD') ?: '',
         'charset' => 'utf8mb4',
     ],
     
     // Email configuration  
     'mail' => [
-        'host' => $_ENV['MAIL_HOST'] ?? 'smtp.gmail.com',
-        'port' => $_ENV['MAIL_PORT'] ?? 587,
-        'username' => $_ENV['MAIL_USERNAME'] ?? '',
-        'password' => $_ENV['MAIL_PASSWORD'] ?? '',
+        'host' => getenv('MAIL_HOST') ?: 'smtp.gmail.com',
+        'port' => getenv('MAIL_PORT') ?: 587,
+        'username' => getenv('MAIL_USERNAME') ?: '',
+        'password' => getenv('MAIL_PASSWORD') ?: '',
         'encryption' => 'tls',
     ],
 ];
